@@ -28,7 +28,7 @@ def company_profile(url):
     title = soup_profile.title.string 
     title = title.split(':') 
     ticker_symbol = title[0]
-    company_name = title[1]#result[1].string
+    company_name = title[1].lstrip()#result[1].string
     company_address = result[2].string
     company_phone_num = [result[3].string.strip('\t,\n '),result[4].string.strip('\t,\n ')]
     industry = result[7].string.split(':') 
@@ -38,7 +38,7 @@ def company_profile(url):
     financial_table = (cell0[1].findChildren('table'))
     financial_sum = financial_table[0]
     financial_sum_result=(financial_sum.find_all('td'))
-    financial_summary = {"capital_curency": financial_sum_result[1].string, "market_cap" : financial_sum_result[3].string,
+    financial_summary = {"capital_curency": financial_sum_result[1].string, "market_cap" : int(financial_sum_result[3].string.replace(',' , '')),
                          "par_value": financial_sum_result[5].string, "equity": financial_sum_result[7].string,
                          "listing_volume": financial_sum_result[9].string, "listed_date": financial_sum_result[11].string,
                          "initial_listed_price": financial_sum_result[13].string}
@@ -57,7 +57,7 @@ def company_profile(url):
                         "phone_number": p_number}
 
     company_profile = {"company_name": company_name,"uid": url,"ticker_symbol":ticker_symbol, "company_description": company_desc.strip('\t,\n '),
-                       "country": "Vietnam","company_set_address":company_address, "company_phone_number" : company_phone_num,
+                       "country": "Vietnam","company_set_address":company_address.strip('\t,\n '), "company_phone_number" : company_phone_num,
                        "business":company_industry, "company_website": company_website.strip('\t,\n '), "company_email":company_email.strip('\t,\n '),
                        "financial_summary": financial_summary, "business_registration": business_registration,
                        "auditing_company": auditing_company}

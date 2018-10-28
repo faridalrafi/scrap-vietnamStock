@@ -44,7 +44,7 @@ def get_revenue(revenue):
   companies = mongo.db.company_profiles
   
   output= []
-  for company in companies.find({'financial_summary.market_cap' :{ '$gte' : revenue}}):
+  for company in companies.find({'financial_summary.market_cap' :{ '$gte' : int(revenue)}}):
     	output.append({"company_url": company["uid"],"company_name":company["company_name"], "company_email":company["company_email"], "company_website": company["company_website"], "company_street_address": company["company_set_address"], "country": "vietnam", "company_description": company["company_description"], "company_phone_number": company["company_phone_number"], "industry": company["business"]})
   
   return jsonify({"status_code": 200,"message": "successful",'data' : output})
