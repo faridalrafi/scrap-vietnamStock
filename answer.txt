@@ -1,0 +1,25 @@
+Task 2 Endpoint :
+Get ALL Companies: ROOT_URL/companies
+Filter By Name : ROOT_URL/company/%20BEN%20TRE%20AQUAPRODUCT%20IMPORT%20AND%20EXPORT%20JSC
+Filter By Industry: ROOT_URL/industry/%20Food%20processing
+Filter By GTE_Revenue: ROOT_URL/revenue/10000
+
+
+1. Q: Which database engine you choose and why?
+   A: I choose to Use MongoDB, Because the result of scrapping the company is in json format, so to import the jsonfile to mongodb is the easiest and fastest way. Furthermore, NoSQL like mongodb has some advanced for this :
+
+-project Document Oriented Storage − Data is stored in the form of JSON style documents.
+-Index on any attribute
+-high availability
+-Auto-sharding
+-Rich queries
+-Fast in-place updates
+-Professional support by MongoDB
+
+2. Q: Which web framework you choose and why?
+   A: I Prefer to use flask in this project, Because flask is microframework and more lightier than django. Flask was designed to be easy to use and extend.  The idea behind Flask is to build a solid foundation for web applications of different complexity. So I can free to plug in any extensions that i think the project need. Using flask I can make this project without complexity and flexible for developing API.
+
+3.Q: Briefly describe the architecture of your application?
+
+  A: The Language that we use in this project is Python3 , and using Flask as web Framework. For the database  use mongoDB. I imported the company_profile.json into the DB, so User can load the company profiles data through API. For scrapping, I use requests and beautifulSoap, and store the data into jsonfile.
+	In this API, it has 4 Feature, to get all company profiles, filter the company by Company name, Industry, and Revenue. It separated by different endpoint, so the front end or mobile developer can GET the data easily.
